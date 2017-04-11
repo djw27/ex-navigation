@@ -133,22 +133,34 @@ export const SlideHorizontalIOS: ExNavigationStyles = {
 
       const meVisible = barVisibleForSceneIndex(scenes, index);
       let offset = layout.initWidth;
+      let fadeOffset = 0;
       if (delta === 0) {
         // default state
         offset = meVisible ? offset : -offset;
+        fadeOffset = meVisible ? 1 : 0;
       } else {
         // if we're pushing, get the previous scenes' visibility. If we're popping, get the scene ahead
         const prevVisible = barVisibleForSceneIndex(scenes, index + (delta > 0 ? -1 : 1));
         if (!prevVisible && meVisible) {
           // when showing, if a push, move from right to left, otherwise if pop, move from left to right
           offset = delta > 0 ? offset : -offset;
+          fadeOffset = delta > 0 ? 1 : 0;
         } else {
           // when hiding, if a push, move from left to right, otherwise if a pop, move from right to left
           offset = delta > 0 ? -offset : offset;
+          fadeOffset = delta > 0 ? 0 : 1;
         }
       }
 
       return {
+        opacity: position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [
+            barVisibleForSceneIndex(scenes, index - 1) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index + 1) ? 1 : fadeOffset,
+          ],
+        }),
         transform: [
           {
             translateX: position.interpolate({
@@ -231,22 +243,34 @@ export const SlideHorizontalFixedNav: ExNavigationStyles = {
 
       const meVisible = barVisibleForSceneIndex(scenes, index);
       let offset = layout.initWidth;
+      let fadeOffset = 0;
       if (delta === 0) {
         // default state
         offset = meVisible ? offset : -offset;
+        fadeOffset = meVisible ? 1 : 0;
       } else {
         // if we're pushing, get the previous scenes' visibility. If we're popping, get the scene ahead
         const prevVisible = barVisibleForSceneIndex(scenes, index + (delta > 0 ? -1 : 1));
         if (!prevVisible && meVisible) {
           // when showing, if a push, move from right to left, otherwise if pop, move from left to right
           offset = delta > 0 ? offset : -offset;
+          fadeOffset = delta > 0 ? 1 : 0;
         } else {
           // when hiding, if a push, move from left to right, otherwise if a pop, move from right to left
           offset = delta > 0 ? -offset : offset;
+          fadeOffset = delta > 0 ? 0 : 1;
         }
       }
 
       return {
+        opacity: position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [
+            barVisibleForSceneIndex(scenes, index - 1) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index + 1) ? 1 : fadeOffset,
+          ],
+        }),
         transform: [
           {
             translateX: position.interpolate({
@@ -320,22 +344,34 @@ export const SlideHorizontal: ExNavigationStyles = {
 
       const meVisible = barVisibleForSceneIndex(scenes, index);
       let offset = layout.initWidth;
+      let fadeOffset = 0;
       if (delta === 0) {
         // default state
         offset = meVisible ? offset : -offset;
+        fadeOffset = meVisible ? 1 : 0;
       } else {
         // if we're pushing, get the previous scenes' visibility. If we're popping, get the scene ahead
         const prevVisible = barVisibleForSceneIndex(scenes, index + (delta > 0 ? -1 : 1));
         if (!prevVisible && meVisible) {
           // when showing, if a push, move from right to left, otherwise if pop, move from left to right
           offset = delta > 0 ? offset : -offset;
+          fadeOffset = delta > 0 ? 1 : 0;
         } else {
           // when hiding, if a push, move from left to right, otherwise if a pop, move from right to left
           offset = delta > 0 ? -offset : offset;
+          fadeOffset = delta > 0 ? 0 : 1;
         }
       }
 
       return {
+        opacity: position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [
+            barVisibleForSceneIndex(scenes, index - 1) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index) ? 1 : fadeOffset,
+            barVisibleForSceneIndex(scenes, index + 1) ? 1 : fadeOffset,
+          ],
+        }),
         transform: [
           {
             translateX: position.interpolate({
