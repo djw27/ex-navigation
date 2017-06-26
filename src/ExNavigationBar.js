@@ -338,7 +338,9 @@ export default class ExNavigationBar extends PureComponent {
 
     const offset = navigationState.index - index;
 
-    if (Math.abs(offset) > 2) {
+    // OLD: Removed so that we can use natively driven animations for navigating
+    // if (Math.abs(offset) > 2) {
+    if (Math.abs(offset) > 0) {
       // Scene is far away from the active scene. Hides it to avoid unnecessary
       // rendering.
       return null;
