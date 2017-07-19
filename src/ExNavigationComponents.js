@@ -259,6 +259,7 @@ export const createFocusableComponent = (WrappedComponent: ReactClass<any>) => {
 
     componentWillUnmount() {
       this._unsubcribeFromStore && this._unsubcribeFromStore();
+      this._handleStateUpdate = () => {};
     }
 
     subscribeToStore() {
