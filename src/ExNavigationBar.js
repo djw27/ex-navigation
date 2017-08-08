@@ -192,10 +192,18 @@ export default class ExNavigationBar extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.visible !== nextProps.visible && nextProps.visible) {
-      this.setState({
-        visible: true,
-      });
+    if (this.props.visible !== nextProps.visible) {
+      if (nextProps.visible) {
+        this.setState({
+          visible: true,
+        });
+      }
+
+      if (!nextProps.visible) {
+        this.setState({
+          visible: false,
+        });
+      }
     }
 
     if (this.props.navigationState.index !== nextProps.navigationState.index) {
