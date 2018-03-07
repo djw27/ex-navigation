@@ -50,6 +50,7 @@ const DefaultTransitionSpec = {
   duration: 250,
   easing: Easing.inOut(Easing.ease),
   timing: Animated.timing,
+  useNativeDriver: true,
 };
 
 class NavigationTransitioner extends React.Component<any, Props, State> {
